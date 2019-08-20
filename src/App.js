@@ -8,6 +8,9 @@ class App {
         this.Init();
     }
 
+    /**
+     * Searches for books when the form submits
+     */
     async onSearch(event) {
         event.preventDefault();
         const bookName = event.target[0].value;
@@ -16,16 +19,26 @@ class App {
         history.pushState(null, '', `?search=${bookName}`);
     }
 
+    /**
+     * Updates the book list array with a new list using the GoogleBooks service
+     */
     async updateBookList(bookName) {
         this.renderLoading();
-        this.bookList = await GoogleBooks.find(bookName);
-        this.render();
+        try {
+            this.bookList = await GoogleBooks.find(bookName);
+            this.render();
+        } catch (err) {
+            document.getElementById("result-list").innerHTML = '<div class="error"><span>Ops! There was an error.</span></div>';
+        }
     }
 
+    /**
+     * Renders the book list
+     */
     render() {
         let bookListHtml = '';
         if (this.bookList.length === 0) {
-            document.getElementById("result-list").innerHTML = '<div class="empty">No books found</div>';
+            document.getElementById("result-list").innerHTML = '<div class="empty">No books found :(</div>';
             return;
         }
 
@@ -44,10 +57,16 @@ class App {
         this.resultList.innerHTML = bookListHtml;
     }
 
+    /**
+     * Renders a loading message
+     */
     renderLoading() {
         document.getElementById("result-list").innerHTML = '<div class="loading">Searching for books . . .</div>';
     }
 
+    /**
+     * Initializes the application
+     */
     async Init() {
         const url = new URL(window.location.href);
         var bookName = url.searchParams.get("search");
