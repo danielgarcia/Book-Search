@@ -1,4 +1,4 @@
-# [Search Books App](http://books.dagasoft.com/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE)
+# [Book Search App](http://books.dagasoft.com/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE)
 
 A simple application to search for books using the [Google Books API](https://developers.google.com/books/) written in vanilla JavaScript
 
