@@ -1,0 +1,76 @@
+.results {
+    display: inline-block;
+    width: 100%;
+
+    ul {
+        display: block;
+        width: 100%;
+
+        li {
+            display: block;
+            margin: 20px;
+            float: left;
+        }
+    }
+
+    .book {
+        display: block;
+        width: 200px;
+        background: $white;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+
+        transform: scale(1, 1);
+        transition: transform $fast;
+
+        &:hover {
+            transform: scale(1.02, 1.02);
+        }
+
+        .img {
+            background-image: url("http://books.google.com/books/content?id=5iTebBW-w7QC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE704QO-5Q7eWuaAAlotCG3z0azkvWosYfthg10Sci-VFc2Rwsz5WDFuEck77dXVy8HYhygdhpTcR9cwBTyw_RHR16s9YT3Tn00ELCUmZVjBLK9g6oRCcQnEStVkxPpOXWnYvFRsg&source=gbs_api");
+            background-position: center;
+            background-size: cover;
+            display: block;
+            width: 200px;
+            height: 200px;
+        }
+
+        .name {
+            line-height: 1.3;
+            font-weight: bold;
+            height: 100px;
+            overflow: auto;
+            font-size: 14px;
+            padding: 20px;
+            text-transform: uppercase;
+        }
+    }
+
+    .loading {
+        font-size: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        animation: pulse 2s infinite;
+    }
+
+    .empty {
+        font-size: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .error {
+        display: block;
+        text-align: center;
+
+        span {
+            background: red;
+            color: white;
+            padding: 15px;
+            text-transform: uppercase;
+            border-radius: 3px;
+        }
+    }
+}

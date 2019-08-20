@@ -1,0 +1,43 @@
+.search-block {
+    display: block;
+    text-align: center;
+    margin-bottom: 50px;
+
+    .title {
+        font-size: 36px;
+        margin: 20px 0;
+        display: block;
+    }
+
+    .input-group {
+        input[type="text"] {
+            height: 45px;
+            padding: 0 15px;
+            width: 300px;
+        }
+
+        button {
+            color: $white;
+            border: 0;
+            border-bottom: 1px solid darken($blue, 5%);
+            background: $blue;
+            padding: 0 20px;
+            height: 45px;
+            letter-spacing: 1px;
+            font-size: 13px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            transition: border-color $fast, opacity $fast, box-shadow $fast;
+
+            &:hover {
+                border-color: $blue;
+                background: darken($blue, 5%);
+            }
+
+            &:active {
+                box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}

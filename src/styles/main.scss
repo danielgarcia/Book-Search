@@ -1,4 +1,5 @@
 @import './utils/variables';
+@import './utils/animations';
 
 @import './base/reset';
 
@@ -7,6 +8,6 @@
 
 
 @import './components/header';
-
-@import './pages/search';
-@import './pages/book';
+@import './components/search';
+@import './components/book';
+@import './components/results';
