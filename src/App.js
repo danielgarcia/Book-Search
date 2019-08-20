@@ -43,15 +43,20 @@ class App {
         }
 
         this.bookList.forEach((book) => {
-            let thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'http://www.placehold.it/300x300';
+            const thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'http://www.placehold.it/300x300';
+            const publisher = book.volumeInfo.publisher ? book.volumeInfo.publisher : '(no publisher found)';
+            let authors = '(no author found)';
+            if (book.volumeInfo.authors) {
+                authors = book.volumeInfo.authors[0] + (book.volumeInfo.authors.length > 1 ? ' and ' + book.volumeInfo.authors.length + ' more' : '');
+            }
 
             bookListHtml += `<li>
                 <a href="${book.volumeInfo.infoLink}" class="book" target="_blank">
                     <div class="img" style="background-image: url('${thumbnail}')"></div>
                     <div class="info">
                         <div class="name ellipsis" title="${book.volumeInfo.title}">${book.volumeInfo.title}</div>
-                        <div class="authors ellipsis" title="${book.volumeInfo.authors[0]}"><span>By</span> ${book.volumeInfo.authors[0]} ${book.volumeInfo.authors.length > 1 ? ' and ' + book.volumeInfo.authors.length + ' more' : ''}</div>
-                        <div class="publishing ellipsis" title="${book.volumeInfo.publisher}"><span>Publishing By</span> ${book.volumeInfo.publisher}</div>
+                        <div class="authors ellipsis" title="${authors}"><span>By</span> ${authors}</div>
+                        <div class="publishing ellipsis" title="${publisher}"><span>Publishing By</span> ${publisher}</div>
                     </div>
                 </a>
             </li>`;
