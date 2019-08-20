@@ -1,0 +1,44 @@
+/* Dimensions */
+$site-width: 1024px;
+$app-menu-width: 100px;
+
+/* Inputs */
+$input-height: 45px;
+$button-height: 45px;
+$select-height: 45px;
+
+/* Font Names */
+$sans: "Roboto",
+"Helvetica",
+"Arial";
+$serif: "Bitter",
+"serif";
+$script: "script";
+
+/* Z-Index */
+$level1: 1;
+$level2: 2;
+$level3: 3;
+$level4: 4;
+$level5: 5;
+
+/* Speeds */
+$quick: .1s;
+$fast: .25s;
+$average: .4s;
+$slow: .65s;
+$slower: 1s;
+
+/* Breakpoints */
+$mobile: 768px;
+$tablet: 992px;
+$desktop: 1200px;
+
+/* Global Colors */
+$black: #404040;
+$off-black: #2d3335;
+$white: #ffffff;
+$off-white: #f6f9fa;
+$background-color: #f2f5f8;
+
+$blue: #137DBB;

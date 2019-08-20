@@ -1,0 +1,70 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: $sans;
+    letter-spacing: 0.25px;
+    background: $background-color;
+    font-weight: 400;
+    color: $black;
+    font-size: 13px;
+}
+
+.clear:before,
+.clear:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.clear:after {
+    clear: both;
+}
+
+/**
+* For IE 6/7 only
+* Include this rule to trigger hasLayout and contain floats.
+*/
+.clear {
+    *zoom: 1;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+strong {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: $black;
+    transition: color $fast;
+
+    &:hover {
+        transition: color $slow;
+        text-decoration: none;
+    }
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
