@@ -10,6 +10,13 @@ body {
     font-size: 13px;
 }
 
+body {
+    >.content {
+        padding-top: 70px;
+        height: 100%;
+    }
+}
+
 .clear:before,
 .clear:after {
     content: " ";
