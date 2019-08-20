@@ -46,7 +46,7 @@ class App {
             let thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'http://www.placehold.it/300x300';
 
             bookListHtml += `<li>
-                <a href="${book.volumeInfo.infoLink}" class="book">
+                <a href="${book.volumeInfo.infoLink}" class="book" target="_blank">
                     <div class="img" style="background-image: url('${thumbnail}')"></div>
                     <div class="name">${book.volumeInfo.title}'</div>
                 </a>
