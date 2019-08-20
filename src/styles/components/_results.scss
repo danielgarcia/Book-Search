@@ -35,14 +35,33 @@
             height: 200px;
         }
 
+        .info {
+            padding: 15px;
+            height: 80px;
+            position: relative;
+        }
+
         .name {
             line-height: 1.3;
             font-weight: bold;
-            height: 100px;
             overflow: auto;
             font-size: 14px;
-            padding: 20px;
             text-transform: uppercase;
+        }
+
+        .authors {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .publishing {
+            position: absolute;
+            font-size: 10px;
+            bottom: 0;
+            right: 0;
+            text-align: right;
+            padding: 5px;
+            width: 200px;
         }
     }
 
