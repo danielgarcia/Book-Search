@@ -1,11 +1,4 @@
 import "./styles/main.scss"
+import App from './App';
 
-function component() {
-  const element = document.createElement('div');
-
-  element.innerHTML = 'Hello webpack!';
-
-  return element;
-}
-
-document.body.appendChild(component());
+new App();
