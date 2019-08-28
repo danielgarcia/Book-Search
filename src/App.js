@@ -5,7 +5,19 @@ class App {
         this.onSearch = this.onSearch.bind(this);
         this.renderLoading = this.renderLoading.bind(this);
         this.bookList = [];
-        this.Init();
+    }
+
+    /**
+     * Initializes the application
+     */
+    async Init() {
+        const url = new URL(window.location.href);
+        const searchQuery = url.searchParams.get("search");
+        if (searchQuery) {
+            await this.updateBookList(searchQuery);
+        }
+
+        document.getElementById('search-form').onsubmit = this.onSearch;
     }
 
     /**
@@ -75,19 +87,6 @@ class App {
      */
     renderLoading() {
         document.getElementById("result-list").innerHTML = '<div class="loading">Searching for books . . .</div>';
-    }
-
-    /**
-     * Initializes the application
-     */
-    async Init() {
-        const url = new URL(window.location.href);
-        var searchQuery = url.searchParams.get("search");
-        if (searchQuery) {
-            await this.updateBookList(searchQuery);
-        }
-
-        document.getElementById('search-form').onsubmit = this.onSearch;
     }
 }
 

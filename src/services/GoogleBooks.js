@@ -3,12 +3,12 @@ export default class GoogleBooks {
     /**
      * Finds Books and returns an array of books using google's book api
      */
-    static async find(title) {
-        if (!title) {
+    static async find(searchQuery) {
+        if (!searchQuery) {
             return [];
         }
 
-        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${title}`, {
+        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}`, {
             method: 'GET',
         });
 
