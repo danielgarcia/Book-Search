@@ -13,10 +13,12 @@ class App {
      */
     async onSearch(event) {
         event.preventDefault();
-        const bookName = event.target[0].value;
+        const searchType = event.target[0].value;
+        const bookName = event.target[1].value;
+        const searchQuery = searchType + bookName;
 
-        await this.updateBookList(bookName);
-        history.pushState(null, '', `?search=${bookName}`);
+        await this.updateBookList(searchQuery);
+        history.pushState(null, '', `?search=${searchQuery}`);
     }
 
     /**
@@ -43,7 +45,7 @@ class App {
         }
 
         this.bookList.forEach((book) => {
-            const thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'http://www.placehold.it/300x300';
+            const thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'http://www.placehold.it/200x200/404040';
             const publisher = book.volumeInfo.publisher ? book.volumeInfo.publisher : '(no publisher found)';
             let authors = '(no author found)';
             if (book.volumeInfo.authors) {
@@ -54,8 +56,10 @@ class App {
                 <a href="${book.volumeInfo.infoLink}" class="book" target="_blank">
                     <div class="img" style="background-image: url('${thumbnail}')"></div>
                     <div class="info">
-                        <div class="name ellipsis" title="${book.volumeInfo.title}">${book.volumeInfo.title}</div>
-                        <div class="authors ellipsis" title="${authors}"><span>By</span> ${authors}</div>
+                        <div class="wrap">
+                            <div class="name" title="${book.volumeInfo.title}">${book.volumeInfo.title}</div>
+                            <div class="authors ellipsis" title="${authors}"><span>By</span> ${authors}</div>
+                        </div>
                         <div class="publishing ellipsis" title="${publisher}"><span>Publishing By</span> ${publisher}</div>
                     </div>
                 </a>
@@ -78,9 +82,9 @@ class App {
      */
     async Init() {
         const url = new URL(window.location.href);
-        var bookName = url.searchParams.get("search");
-        if (bookName) {
-            await this.updateBookList(bookName);
+        var searchQuery = url.searchParams.get("search");
+        if (searchQuery) {
+            await this.updateBookList(searchQuery);
         }
 
         document.getElementById('search-form').onsubmit = this.onSearch;

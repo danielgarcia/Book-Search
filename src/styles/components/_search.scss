@@ -10,10 +10,57 @@
     }
 
     .input-group {
-        input[type="text"] {
+        display: block;
+        margin: auto;
+        max-width: 500px;
+        width: 100%;
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
             height: 45px;
             padding: 0 15px;
-            width: 300px;
+            background: $white;
+            width: 140px;
+            float: left;
+            display: block;
+            border: 1px solid lightgrey;
+            border-radius: 0;
+            outline: none;
+            cursor: pointer;
+            transition: border-color $fast;
+            background-image: url('https://image.flaticon.com/icons/svg/25/25243.svg');
+            background-position: 123px 19px;
+            background-size: 7px;
+            background-repeat: no-repeat;
+
+            &:hover {
+                border-color: #a5a5a5;
+            }
+
+            &:focus {
+                border-color: $blue;
+            }
+        }
+
+        input[type="text"] {
+            display: block;
+            float: left;
+            height: 45px;
+            padding: 0 15px;
+            width: calc(100% - 90px - 140px);
+            border: 1px solid lightgrey;
+            outline: none;
+            transition: border-color $fast;
+
+            &:hover {
+                border-color: #a5a5a5;
+            }
+
+            &:focus {
+                border-color: $blue;
+            }
         }
 
         button {
@@ -23,6 +70,7 @@
             background: $blue;
             padding: 0 20px;
             height: 45px;
+            width: 90px;
             letter-spacing: 1px;
             font-size: 13px;
             cursor: pointer;
