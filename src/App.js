@@ -15,7 +15,7 @@ class App {
         event.preventDefault();
         const searchType = event.target[0].value;
         const bookName = event.target[1].value;
-        const searchQuery = searchType + bookName;
+        const searchQuery = bookName ? searchType + bookName : '';
 
         await this.updateBookList(searchQuery);
         history.pushState(null, '', `?search=${searchQuery}`);
