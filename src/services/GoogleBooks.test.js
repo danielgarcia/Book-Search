@@ -29,7 +29,8 @@ describe('verify GoogleBooks Service...', () => {
 
     it('returns no books', async () => {
         const responseBooks = {
-            items: getBooks(0)
+            "kind": "books#volumes",
+            "totalItems": 0
         };
 
         fetchMock.get('https://www.googleapis.com/books/v1/volumes?q=book%20title', {
@@ -55,6 +56,12 @@ describe('verify GoogleBooks Service...', () => {
         const result = await GoogleBooks.find('book title');
         expect(result.length).toBe(10);
         expect(result).toEqual(responseBooks.items);
+    });
+
+    it('find with no query returns no books', async () => {
+        const result = await GoogleBooks.find();
+        expect(result.length).toBe(0);
+        expect(result).toEqual([]);
     });
 
     it('can throw an error', async () => {

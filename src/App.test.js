@@ -12,7 +12,9 @@ const getBooks = (quantity) => {
     for (let i = 1; i <= quantity; i++) {
         books.push({
             volumeInfo: {
-                imageLinks: 'http://www.placehold.it/200x200',
+                imageLinks: {
+                    thumbnail: 'http://www.placehold.it/200x200'
+                },
                 publisher: `test company ${i}`,
                 authors: [`test person ${i}`],
                 infoLink: `www.test${i}.com`,
@@ -81,31 +83,23 @@ describe('verify App...', () => {
             expect(resultList.innerHTML).toBe('<div class="empty">No books found :(</div>');
         });
 
-        it('with 2 books', () => {
+        it('with 1 book with no image an publisher', () => {
             const app = new App();
-            app.bookList = getBooks(2);
-            app.render();
+            app.bookList = getBooks(1);
+            app.bookList[0].volumeInfo.imageLinks = undefined;
+            app.bookList[0].volumeInfo.publisher = undefined;
+            app.bookList[0].volumeInfo.authors = [`test person 1`, `test person 2`],
+                app.render();
             const resultList = document.getElementById('result-list');
             const expectedResult = `<li>
                 <a href="www.test1.com" class="book" target="_blank">
-                    <div class="img" style="background-image: url('undefined')"></div>
+                    <div class="img" style="background-image: url('http://www.placehold.it/200x200/404040')"></div>
                     <div class="info">
                         <div class="wrap">
                             <div class="name" title="test book 1">test book 1</div>
-                            <div class="authors ellipsis" title="test person 1"><span>By</span> test person 1</div>
+                            <div class="authors ellipsis" title="test person 1 and 1 more"><span>By</span> test person 1 and 1 more</div>
                         </div>
-                        <div class="publishing ellipsis" title="test company 1"><span>Publishing By</span> test company 1</div>
-                    </div>
-                </a>
-            </li><li>
-                <a href="www.test2.com" class="book" target="_blank">
-                    <div class="img" style="background-image: url('undefined')"></div>
-                    <div class="info">
-                        <div class="wrap">
-                            <div class="name" title="test book 2">test book 2</div>
-                            <div class="authors ellipsis" title="test person 2"><span>By</span> test person 2</div>
-                        </div>
-                        <div class="publishing ellipsis" title="test company 2"><span>Publishing By</span> test company 2</div>
+                        <div class="publishing ellipsis" title="(no publisher found)"><span>Publishing By</span> (no publisher found)</div>
                     </div>
                 </a>
             </li>`;
@@ -133,9 +127,10 @@ describe('verify App...', () => {
         });
 
 
-        it('can render 2 books', async () => {
+        it('can render 2 books and 1 without an author', async () => {
             const app = new App();
             const books = getBooks(2);
+            books[0].volumeInfo.authors = undefined;
 
             GoogleBooks.find = jest.fn().mockImplementation(() => Promise.resolve(books));
 
@@ -145,18 +140,18 @@ describe('verify App...', () => {
             const resultList = document.getElementById('result-list');
             const expectedResult = `<li>
                 <a href="www.test1.com" class="book" target="_blank">
-                    <div class="img" style="background-image: url('undefined')"></div>
+                    <div class="img" style="background-image: url('http://www.placehold.it/200x200')"></div>
                     <div class="info">
                         <div class="wrap">
                             <div class="name" title="test book 1">test book 1</div>
-                            <div class="authors ellipsis" title="test person 1"><span>By</span> test person 1</div>
+                            <div class="authors ellipsis" title="(no author found)"><span>By</span> (no author found)</div>
                         </div>
                         <div class="publishing ellipsis" title="test company 1"><span>Publishing By</span> test company 1</div>
                     </div>
                 </a>
             </li><li>
                 <a href="www.test2.com" class="book" target="_blank">
-                    <div class="img" style="background-image: url('undefined')"></div>
+                    <div class="img" style="background-image: url('http://www.placehold.it/200x200')"></div>
                     <div class="info">
                         <div class="wrap">
                             <div class="name" title="test book 2">test book 2</div>
@@ -235,6 +230,19 @@ describe('verify App...', () => {
             event.target[1].value = 'test author';
             await app.onSearch(event);
             expect(app.updateBookList).toBeCalledWith('inauthor:test author');
+            app.updateBookList = updateBookList;
+        });
+
+        it('handle empty search event', async () => {
+            const app = new App();
+            const updateBookList = app.updateBookList;
+
+            app.updateBookList = jest.fn().mockImplementation(() => Promise.resolve());
+
+            event.target[0].value = '';
+            event.target[1].value = '';
+            await app.onSearch(event);
+            expect(app.updateBookList).toBeCalledWith('');
             app.updateBookList = updateBookList;
         });
     });

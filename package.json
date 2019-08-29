@@ -5,7 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server  --config webpack.config.js --open",
     "build": "webpack --config webpack.prod.js",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "npx jest --coverage"
   },
   "keywords": [],
   "author": "",

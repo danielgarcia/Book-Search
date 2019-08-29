@@ -61,7 +61,7 @@ class App {
             const publisher = book.volumeInfo.publisher ? book.volumeInfo.publisher : '(no publisher found)';
             let authors = '(no author found)';
             if (book.volumeInfo.authors) {
-                authors = book.volumeInfo.authors[0] + (book.volumeInfo.authors.length > 1 ? ' and ' + book.volumeInfo.authors.length + ' more' : '');
+                authors = book.volumeInfo.authors[0] + (book.volumeInfo.authors.length > 1 ? ' and ' + (book.volumeInfo.authors.length - 1) + ' more' : '');
             }
 
             bookListHtml += `<li>
