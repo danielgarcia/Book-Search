@@ -63,21 +63,6 @@ describe('verify GoogleBooks Service...', () => {
             body: JSON.stringify("bad data")
         });
 
-        const syncify = async (fn) => {
-            try {
-                const result = await fn();
-                return () => {
-                    return result;
-                };
-            } catch (e) {
-                return () => {
-                    throw e;
-                };
-            }
-        };
-
-        expect(await syncify(async () => {
-            return await GoogleBooks.find('book title');
-        })).toThrow();
+        expect(GoogleBooks.find('book title')).rejects.toEqual(new Error("Error Fetching Books"));
     });
 });
