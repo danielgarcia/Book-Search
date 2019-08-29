@@ -32,6 +32,10 @@ $ npm run test
 $ npm run coverage
 ```
 
+<p align='left'>
+<img src='https://raw.githubusercontent.com/danielgarcia/Book-Search/master/coverage.png' width='600' alt='Homepage'>
+</p>
+
 ## Screenshots
 
 ### Homepage
@@ -43,3 +47,4 @@ $ npm run coverage
 <p align='left'>
 <img src='https://raw.githubusercontent.com/danielgarcia/Book-Search/master/Search.png' width='600' alt='Search'>
 </p>
+
