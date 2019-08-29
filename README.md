@@ -19,12 +19,17 @@ $ npm start
 
 ### To build the App
 ```
-$ npm run-script build
+$ npm run build
 ```
 
 ### To run the App Tests
 ```
-$ reset && npm test
+$ npm run test
+```
+
+### To run the App Tests with Code Coverage
+```
+$ npm run coverage
 ```
 
 ## Screenshots
